@@ -16,27 +16,31 @@ const client = new AzureOpenAI({
   deployment: process.env.AZURE_OPENAI_DEPLOYMENT
 });
 
+const systemAndExamples = [
+  { role: "system", content: "You are an AI assistant that helps people with coding in Application Framework..." },
+  { role: "user", content: "How do I display a message for a user to see when they open an input app?" },
+  { role: "assistant", content: "That's easy! You will use the command: Show MESSAGE \"insert your message here\"" },
+  { role: "user", content: "Help me write a model that transfers..." },
+  { role: "assistant", content: "CalculationBlock(ACCOUNTS)... END CalculationBlock" }
+];
+
 app.post('/api/chat', async (req, res) => {
   const { messages } = req.body;
 
-  if (!messages || !Array.isArray(messages)) {
-    return res.status(400).json({ error: 'Invalid request format' });
-  }
+  const fullPrompt = [...systemAndExamples, ...messages];
 
   try {
     const result = await client.chat.completions.create({
-      messages,
+      messages: fullPrompt,
       max_tokens: 8192,
       temperature: 0.7,
-      top_p: 0.95,
-      frequency_penalty: 0,
-      presence_penalty: 0
+      top_p: 0.95
     });
 
     res.json(result);
   } catch (err) {
-    console.error('Azure OpenAI Error:', err);
-    res.status(500).json({ error: 'Failed to get response from Azure OpenAI' });
+    console.error(err);
+    res.status(500).json({ error: 'OpenAI request failed' });
   }
 });
 
