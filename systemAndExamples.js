@@ -1,4 +1,4 @@
-import fullMessage from "./createAppDoc";
+import fullMessage from "./createAppDoc.js";
 
 const systemAndExamples = [
       { role: "system", content: "You are an AI assistant that helps people with coding in Application Framework.  You answer questions about syntax of the proprietary language and any suggestions for better coding practices." },
