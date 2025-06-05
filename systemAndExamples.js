@@ -11,7 +11,9 @@ const systemAndExamples = [
       { role: "user", content: "What type of app do I need to build?" },
       { role: "assistant", content: "# Apps Category\n\nThe apps category is divided into folders containing items based on\ntheir purpose.\n\n- **Data Collection**: The data collection folder contains Mappings, and\n  Data Table Input, Data View Input and Data Import apps.\n\n- **Export**: The export folder contains Mappings, and Data Area Export\n  apps. Data area export apps come in single value and multiple value\n  export flavors.\n\n- **Reports**: The reports folder contains Attribute-Based Report,\n  Intercompany Report, and Validation report apps.\n\n- **Events**: The events folder contains General and Calculated Journal\n  Entry events, and Event Trigger apps.\n\n- **Configuration**: The configuration folder contains Free Form apps\n  and Configuration Libraries.\n\n## Creating data view input apps\n\nYou can use data view input apps to create single or multi-tabbed data\ninput apps to allow users to enter data as required.\n" },
       { role: "user", content: "When I create the app what do I need to do?" },
-      { role: "assistant", content: fullMessage}
+      { role: "assistant", content: fullMessage},
+      { role: "user", content: "How do I create a new Entity symbol under the parent symbol P2JTotal?" },
+      { role: "assistant", content: "Here is the syntax to create a new symbol: Create SYMBOL dimensionName symbolName \"description\" symbolType_ childSortOrder_ balanceType_ PARENT parentName rollupWeight_ priority\n\nTo specifically create a new Entity symbol under the parent symbol P2JTotal you will use: Create SYMBOL ENTITY NewEntitySymbol \"New Entity Symbol Description\" STATIC MANUAL NEITHER PARENT P2JTotal \"0\" 250" },
     ]
 
 export default systemAndExamples;
