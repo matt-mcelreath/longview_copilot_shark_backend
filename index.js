@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { AzureOpenAI } from 'openai';
+import systemAndExamples from './systemAndExamples.js';
 
 dotenv.config();
 
